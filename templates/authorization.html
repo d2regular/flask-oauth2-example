@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div>
+        {% if current_user.is_authenticated %}
+        <h1>Authorized</h1>
+        <div><a href="{{url_for('index')}}">Index</a></div>
+        {% else %}
+        <h1>Not authorized</h1>
+
+        <div><a href="{{url_for('oauth_authorize', provider='vk')}}">vk authorization2</a></div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+    </div>
+</body>
+</html>
